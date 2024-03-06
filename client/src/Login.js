@@ -17,7 +17,7 @@ const Login = () => {
 
         try {
             // Call your login API with username, password, and API token
-            const response = await fetch('http://localhost:8080/api/auth/signin', {
+            const response = await fetch('/api/auth/signin', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

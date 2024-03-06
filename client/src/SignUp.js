@@ -9,7 +9,7 @@ const SignUp = () => {
     const handleSignUp = async () => {
         try {
             // Call your signup API with username, email, password, and API token
-            const response = await fetch('http://localhost:8080/api/auth/signup', {
+            const response = await fetch('/api/auth/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

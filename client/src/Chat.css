@@ -20,7 +20,7 @@
   align-items: flex-start;
   max-height: calc(100vh - 150px);
   scrollbar-width: thin;
-    
+  overflow-y: auto; 
   }
 
   

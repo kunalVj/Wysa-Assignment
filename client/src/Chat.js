@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 import './Chat.css';
 
-const socket = io("http://localhost:8080");
+const socket = io("/");
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);

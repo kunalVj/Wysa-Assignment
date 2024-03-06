@@ -3,13 +3,15 @@ const cors = require("cors");
 const cookieSession = require("cookie-session");
 const http = require('http');
 const { Server } = require('socket.io');
+const path = require('path');
 
 const app = express();
 app.use(cors());
 const server = http.createServer(app);
+
 const io = new Server(server, {
   cors: {
-      origin:"http://localhost:3000",
+      origin:"*",
       methods:["GET","POST"]
   }
 });
@@ -60,7 +62,7 @@ app.use(express.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
-
+app.use(express.static(path.join(__dirname, 'build')));
 app.use(
   cookieSession({
     name: "kunal-session",
@@ -89,14 +91,14 @@ db.mongoose
   });
 
 // simple route
-app.get("/", (req, res) => {
-  res.json({ message: "Try using UI" });
-});
 
 // routes
 require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
 
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
